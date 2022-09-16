@@ -1,6 +1,6 @@
 <div align="center">
 
-# Lightning-Hydra-Template
+# Docker-Lightning-Hydra-Template
 
 [![python](https://img.shields.io/badge/-Python_3.7_%7C_3.8_%7C_3.9_%7C_3.10-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![pytorch](https://img.shields.io/badge/PyTorch_1.8+-ee4c2c?logo=pytorch&logoColor=white)](https://pytorch.org/get-started/locally/)
@@ -79,6 +79,8 @@ _\*keep in mind this is unofficial community project_
 
 [Hydra](https://github.com/facebookresearch/hydra) - a framework for elegantly configuring complex applications. The key feature is the ability to dynamically create a hierarchical configuration by composition and override it through config files and the command line.
 
+[Docker](https://www.docker.com/) - Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. 
+
 <br>
 
 ## Main Ideas Of This Template
@@ -143,7 +145,8 @@ The directory structure of new project looks like this:
 ├── .env.example              <- Example of file for storing private environment variables
 ├── .gitignore                <- List of files ignored by git
 ├── .pre-commit-config.yaml   <- Configuration of pre-commit hooks for code formatting
-├── Makefile                  <- Makefile with commands like `make train` or `make test`
+├── Dockerfile                <- Commands to setup environment for this project 
+├── Makefile                  <- Makefile with commands like `make build` , `make train` or `make test`
 ├── pyproject.toml            <- Configuration options for testing and linting
 ├── requirements.txt          <- File for installing python dependencies
 ├── setup.py                  <- File for installing project as a package
@@ -156,18 +159,15 @@ The directory structure of new project looks like this:
 
 ```bash
 # clone project
-git clone https://github.com/ashleve/lightning-hydra-template
+git clone https://github.com/garima-mahato/tsai-emlo2-session2
 cd lightning-hydra-template
 
-# [OPTIONAL] create conda environment
-conda create -n myenv python=3.9
-conda activate myenv
+# create environment using docker
+make build
 
-# install pytorch according to instructions
-# https://pytorch.org/get-started/
+# Example: train timm model on CIFAR10 data
+make train experiment=cifar10.yaml
 
-# install requirements
-pip install -r requirements.txt
 ```
 
 Template contains example with MNIST classification.<br>
