@@ -1,4 +1,5 @@
 IMAGE_NAME = "tsai-emlo2-session2"
+WORKDIR = "/workspace/project"
 
 help:  ## Show help
 	@grep -E '^[.a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
@@ -28,7 +29,7 @@ test-full: ## Run all tests
 	pytest
 
 train: ## Train the model
-	python src/train.py
+	docker run --volume `pwd`:${WORKDIR} ${IMAGE_NAME} python3 src/train.py
 
 build: ## Builds docker image
 	docker build -t ${IMAGE_NAME} .
