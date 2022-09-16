@@ -31,7 +31,7 @@ train: ## Train the model
 	python src/train.py
 
 build: ## Builds docker image
-    docker build -t ${IMAGE_NAME} .
+	docker build -t ${IMAGE_NAME} .
 
 debug: ## Enter debugging mode with pdb
 	#
